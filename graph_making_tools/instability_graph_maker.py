@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # ======================
 # CONFIG
 # ======================
-ROOT_DIR = r"confidence_results\new_results_200d\confidence_results_RQ1point2_newresults"  # input folder
+ROOT_DIR = r"confidence_results\new_results_200d\confidence_results_RQ1_newresults"  # input folder
 OUTPUT_DIR = r"instability_charts\RQ1point2"  # where to save plots
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 

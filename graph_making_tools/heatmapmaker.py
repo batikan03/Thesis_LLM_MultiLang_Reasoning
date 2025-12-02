@@ -3,10 +3,6 @@
 
 """
 Standalone heatmap maker for response language detection.
-Preserves the same storing logic and filenames as your original pipeline.
-
-Usage:
-    python make_heatmaps.py /path/to/confidence_results_ROOT
 """
 
 import os

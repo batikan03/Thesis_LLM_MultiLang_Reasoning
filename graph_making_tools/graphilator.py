@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ---------- CONFIG ----------
+# ---------- Varibels ----------
 LANG_ORDER = [
     "english","german","french","spanish","polish","danish","turkish"
 ]
@@ -16,7 +16,7 @@ LANG_TITLE = {
     "english":"English","german":"German","french":"French","spanish":"Spanish",
     "polish":"Polish","danish":"Danish","turkish":"Turkish"
 }
-# Which columns to visualize (must exist in your CSVs)
+# Which columns to visualize 
 METRICS = [
     "response_avg_logp",
     "response_avg_logp_per_char",
@@ -28,9 +28,8 @@ RIDGE_BINS = 200
 RIDGE_SPACING = 1.4
 RIDGE_HEIGHT_SCALE = 0.85
 RIDGE_SMOOTH = 3
-# --bocplot params----
 
-# --- boxplot style (like the example image) ---
+# --- boxplot params ---
 SHOW_MEAN_CI_OVERLAY = False   # set True if you still want mean ±95% CI dots
 BOX_WIDTH = 0.55               # visual width
 

@@ -55,7 +55,7 @@ if __name__ == "__main__":
     "maltese": "mt",
     "albanian": "sq"}    
     column_to_evaluate = "input"
-    output_base_dir = "/home/batikan/llm_pipeline/spesific_results/RQ2_Results_default"
+    output_base_dir =  "/raw_results/new_results_200d/RQ2"
 
     try:
         df = pd.read_csv(input_file)
@@ -99,10 +99,10 @@ if __name__ == "__main__":
                     # Save progress after each row
                     df_results.to_csv(output_path, index=False)
 
-                print(f"✅ Finished evaluating with model '{model_name}' in language: {lang_name}")
-                print(f"📁 Results saved to: {output_path}")
+                print(f" Finished  model '{model_name}' in language: {lang_name}")
+                print(f" Results : {output_path}")
 
     except FileNotFoundError:
-        print(f"❌ Error: File not found - {input_file}")
+        print(f" File not found - {input_file}")
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        print(f" Unexpected error: {e}")

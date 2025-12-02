@@ -3,18 +3,14 @@ import re
 import os
 from typing import Optional, List
 
-# --- Point this to the *RQ directory* that contains multiple model subfolders ---
-RQ_ROOT = r"confidence_results\new_results_200d\experiment_results\confidence_results_RQ3_newresults"
+RQ_ROOT = r"/raw_results/new_results_200d/RQ1"
 
 print(f"Starting recursive answer extraction under: {RQ_ROOT}")
 
-# ----------------- Patterns (keep your order; only broaden coverage) -----------------
 
 answer_keywords_combined = [
-    # original
     "Svar", "Answer", "Antwort", "Respuesta", "Réponse", "Réponse est",
     "Cevap", "Doğru cevap", "Odpowiedź", "Poprawna odpowiedź",
-    # added (BS/HR/SR/BG/SQ/MT)
     "Odgovor", "Tačan odgovor", "Točan odgovor",
     "Отговор", "Верен отговор", "Правилен отговор", "Правилният отговор",
     "Përgjigjja", "Përgjigja", "Përgjigjja e saktë", "Përgjigja e saktë",
@@ -27,7 +23,6 @@ explicit_answer_pattern = re.compile(
 )
 
 final_conclusion_phrases_combined = [
-    # original
     r'The\s+correct\s+answer\s+is',
     r'Die\s+korrekte\s+Antwort\s+lautet',
     r'Poprawna\s+odpowiedź\s+to',
@@ -35,7 +30,6 @@ final_conclusion_phrases_combined = [
     r'Doğru\s+cevap(?:\s+nedir)?',
     r'Det\s+rigtige\s+svar\s+er',
     r'(?:The\s+correct\s+|Die\s+korrekte\s+)?(?:Antwort(?:option)?|answer|solution)(?:\s+is|\s+lautet|\s+ist)?',
-    # added
     r'Tačan\s+odgovor\s+je', r'Točan\s+odgovor\s+je', r'Tačan\s+je\s+odgovor', r'Točan\s+je\s+odgovor',
     r'Верният\s+отговор\s+е', r'Правилният\s+отговор\s+е',
     r'Përgjigjja\s+e\s+saktë\s+është', r'Përgjigja\s+e\saktë\s+është',
@@ -61,9 +55,9 @@ option_choice_pattern = re.compile(
 
 boxed_pattern = re.compile(r'\\boxed\{(\d+)\}')
 
-# NEW: strong “end-of-text number after colon/equals”
+#  strong “end-of-text number after colon/equals”
 end_colon_number_pattern = re.compile(r'[:=]\s*(\d{1,2})\s*[\)\].;,:-]?\s*$', re.IGNORECASE | re.MULTILINE)
-# NEW: permissive “last number at end”
+#  permissive “last number at end”
 end_loose_number_pattern  = re.compile(r'(\d{1,2})\s*[\)\].;,:-]?\s*$', re.IGNORECASE | re.MULTILINE)
 
 line_tail_numeric = re.compile(r'^\s*[\(\[]?\s*(\d{1,2})\s*[\)\]]?\s*[\.\-–—,:;]?\s*$')

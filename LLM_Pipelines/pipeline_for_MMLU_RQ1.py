@@ -47,7 +47,7 @@ def evaluate_headline_multilang(question_text, model, prompt_instruction):
 if __name__ == "__main__":
     input_dir = "MMLU_translated_new"
     prompt_dir = "prompts_for_MMLU"
-    output_base_dir = "/home/batikan/llm_pipeline/spesific_results/RQ1_alldiff_Results"
+    output_base_dir = "/raw_results/new_results_200d/RQ1point2"
     model_names = ["qwq:latest", "qwen2.5:7b", "deepseek-r1:14b-qwen-distill-q8_0"]
     column_to_evaluate = "input"
 
@@ -110,8 +110,8 @@ if __name__ == "__main__":
 
                     df_results.to_csv(output_path, index=False)
 
-                print(f"✅ Finished evaluating with model '{model_name}' in language: {lang_code}")
-                print(f"📁 Results saved to: {output_path}")
+                print(f" Finished model '{model_name}' in language: {lang_code}")
+                print(f"Results saved : {output_path}")
 
         except Exception as e:
-            print(f"❌ Error processing file {csv_file}: {e}")
+            print(f" Error processing file {csv_file}: {e}")

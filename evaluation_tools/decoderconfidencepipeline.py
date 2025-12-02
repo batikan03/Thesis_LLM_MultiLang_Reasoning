@@ -48,7 +48,7 @@ def get_language_label(text):
         label += " with foreign/irregular characters"
     return label
 
-# Map Ollama model dir -> HF repo id
+#  Ollama model dir -> HF repo id
 ollama_to_hf = {
     'qwen2.5_7b': "Qwen/Qwen2.5-7B",
     'qwq_latest': "Qwen/QwQ-32B",
@@ -227,7 +227,7 @@ def score_response_given_prompt(model, tokenizer, prompt_text: str, response_tex
 
 
 
-def score_and_detect(mainfolder, output_root="confidence_results_RQ1point2_newresults"):
+def score_and_detect(mainfolder, output_root="confidence_results\new_results_200d\experiment_results\confidence_results_RQ1_newresults"):
     os.makedirs(output_root, exist_ok=True)
     model_dirs = [d for d in os.listdir(mainfolder) if d in ollama_to_hf]
 
@@ -310,7 +310,7 @@ def score_and_detect(mainfolder, output_root="confidence_results_RQ1point2_newre
                 })
                 lang_buckets[lang].append(rec)
 
-        # Write ONE CSV per language for this model
+        # Write ONE CSV per language per  model
         for lang, rows in lang_buckets.items():
             out_df = pd.DataFrame(rows)
             out_csv_path = os.path.join(model_output_dir, f"confidence_{lang}.csv")
@@ -327,5 +327,5 @@ def score_and_detect(mainfolder, output_root="confidence_results_RQ1point2_newre
     print(f"All models processed. Results saved under '{output_root}/'.")
 
 if __name__ == "__main__":
-    mainfolder = r'MMLU_results/spesific_results/RQ1_Results(diff_data)'
+    mainfolder = r'/raw_results/new_results_200d/RQ1'
     score_and_detect(mainfolder)

@@ -7,16 +7,11 @@ import time
 from glob import glob
 
 # ----------------------------
-# Config (single input CSV)
-# ----------------------------
 INPUT_CSV = "datasets/MMLU_translated_v2/processed_questions_google_translated_en.csv"   # <- pick your EN file here
 PROMPT_DIR = "prompts_for_MMLU"                      # check_truth_en.txt, check_truth_fr.txt, ...
-OUTPUT_BASE_DIR = "/home/batikan/llm_pipeline/spesific_results/RQ1_Results"
+OUTPUT_BASE_DIR = "/raw_results/new_results_200d/RQ1"
 MODEL_NAMES = ["qwq:latest", "qwen2.5:7b", "deepseek-r1:14b-qwen-distill-q8_0"]
 COLUMN_TO_EVALUATE = "input"
-
-# ----------------------------
-# HTTP / LLM helpers
 # ----------------------------
 def query_ollama(prompt, model, retries=3, delay=10, timeout=120, session=None):
     url = "http://localhost:11434/api/generate"
@@ -52,9 +47,6 @@ def evaluate_headline_multilang(question_text, model, prompt_instruction, sessio
         return match.group(), full_response
     return None, full_response
 
-# ----------------------------
-# Utilities
-# ----------------------------
 LANG_FROM_PROMPT_RE = re.compile(r"check_truth_([a-z]{2})\.txt$", re.IGNORECASE)
 
 def discover_languages_from_prompts(prompt_dir):
@@ -160,6 +152,6 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(f"  ! Failed to save {out_path}: {e}")
 
-            print(f"✅ Saved: {out_path}")
+            print(f" Saved: {out_path}")
 
     print("\nAll done.")
